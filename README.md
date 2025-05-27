@@ -1,58 +1,58 @@
-Sentiment-Aware TFT-WGAN for Crypto Market Bottom Prediction
-This repository implements a two-stage deep learning framework for detecting cryptocurrency market bottoms using multi-modal data and generative adversarial learning.
+# Sentiment-Aware TFT-WGAN for Crypto Market Bottom Prediction
 
-🚀 Overview
-Cryptocurrency markets are volatile and prone to abrupt reversals. This project builds a Sentiment-Aware Temporal Fusion Transformer in a WGAN-GP setup to forecast price paths and detect market bottoms in real time. A downstream XGBoost classifier uses latent features and sentiment inputs to output bottom probabilities.
+This repository implements a deep learning framework to predict market bottoms in cryptocurrency trading using multi-modal inputs and generative adversarial learning.
 
-🧠 Core Architecture
-TFT-WGAN-GP
+## 🚀 Overview
 
-Generator: Temporal Fusion Transformer (multi-horizon forecasting)
+Cryptocurrency markets are highly volatile, with sudden trend reversals that challenge traditional forecasting methods. This project proposes a **Sentiment-Aware Temporal Fusion Transformer with Wasserstein GAN (TFT-WGAN)** to forecast price paths and detect market bottoms. A downstream **XGBoost classifier** uses hidden states from the GAN, combined with real-time sentiment and trend data, to estimate the probability that the next bar is a bottom.
 
-Discriminator: CNN (sequence realism enforcement)
+## 🧠 Architecture
 
-Bottom Classifier
+- **Generator**: Temporal Fusion Transformer (TFT)
+- **Discriminator**: 1D CNN
+- **Classifier**: XGBoost using generator latent states + sentiment/trend features
 
-Input: Latent state from TFT + recent sentiment & trends
+## 📊 Data Sources
 
-Model: XGBoost
+- OHLCV data (Binance/Yahoo Finance)
+- Sentiment (Twitter/Reddit via FinBERT/CryptoBERT)
+- Google Trends (via PyTrends)
+- Technical Indicators (SMA, EMA, RSI, MACD, etc.)
 
-📊 Data Sources
-Binance/Yahoo Finance (OHLCV @ 5-min intervals)
+## 🧪 Evaluation Metrics
 
-Twitter/Reddit sentiment (via FinBERT/CryptoBERT)
+- Forecasting: RMSE, MAE
+- Classification: AUROC, F1, Precision, Recall
+- Strategy: Simulated returns under bottom-alert conditions
 
-Google Trends (via PyTrends)
+## 📦 Dependencies
 
-Engineered technical indicators (SMA, RSI, MACD, etc.)
+- Python 3.9+
+- TensorFlow / PyTorch
+- XGBoost
+- Scikit-learn
+- Huggingface Transformers
+- PyTrends
+- Pandas, NumPy
 
-🧪 Evaluation Metrics
-Forecasting: RMSE, MAE
+## 📁 Project Structure
 
-Classification: AUROC, Precision, Recall, F1
+```text
+project-root/
+├── data/               # Scripts & storage for multimodal time-series data
+├── models/             # TFT-WGAN and classifier modules
+├── utils/              # Preprocessing, feature generation, evaluation
+├── notebooks/          # Prototype and experiment notebooks
+├── config/             # Hyperparameter and architecture configs
+└── README.md           # Project overview and setup
+```
 
-Trading Simulations: Risk-adjusted returns
+## 🛠 Development Status
 
-📦 Key Dependencies
-Python 3.9+, TensorFlow, PyTorch
+- ✅ Literature + Architecture Finalized
+- 🛠 Model Training & Evaluation in progress
+- 📅 MVP Target: **July 2025**
 
-XGBoost, Scikit-learn
+## 📄 License
 
-Huggingface Transformers, PyTrends
-
-📁 Project Structure
-graphql
-Copy
-Edit
-├── data/               # Scripts & storage for multimodal data
-├── models/             # TFT-WGAN and XGBoost implementations
-├── utils/              # Preprocessing, feature engineering
-├── notebooks/          # PoC and experiment runs
-├── config/             # Model and training configs
-└── README.md
-📍 Status
-🚧 Work in progress — final model & experiments underway.
-📅 MVP release planned: July 2025
-
-📄 License
 MIT License © 2025 Tharaka Rehan
